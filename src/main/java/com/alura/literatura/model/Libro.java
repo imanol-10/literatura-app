@@ -13,7 +13,7 @@ public class Libro {
     private String idioma;
     private Integer descargas;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "autor_id")
     private Autor autor;
 

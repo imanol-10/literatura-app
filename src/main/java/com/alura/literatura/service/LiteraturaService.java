@@ -50,7 +50,7 @@ public class LiteraturaService {
                         return autorRepository.save(nuevoAutor);
                     });
 
-            Optional<Libro> libroExistente = libroRepository.findByTitulo(datosLibro.getTitle());
+            Optional<Libro> libroExistente = libroRepository.findByTituloIgnoreCase(datosLibro.getTitle());
             if (libroExistente.isPresent()) continue;
 
             Libro libro = new Libro();
@@ -60,7 +60,14 @@ public class LiteraturaService {
             libro.setAutor(autor);
 
             libroRepository.save(libro);
-            System.out.println("Libro Guardado: " + libro.getTitulo() + " - Autor: " + autor.getNombre());
+
+            //Mostrar en consola con formato
+            System.out.println("****** LIBRO ******");
+            System.out.println("TITULO: " + libro.getTitulo());
+            System.out.println("AUTOR: " + autor.getNombre());
+            System.out.println("IDIOMA: " + libro.getIdioma());
+            System.out.println("NUMERO DE DESCARGA: " + libro.getDescargas());
+            System.out.println();
         }
     }
 
